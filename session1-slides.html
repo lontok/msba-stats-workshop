@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSBA Statistics & Excel Workshop - Session 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            scroll-snap-align: start;
+            position: relative;
+            background: white;
+        }
+
+        .slide:nth-child(odd) {
+            background: #ffffff;
+        }
+
+        .slide:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #34495e;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 2rem;
+            color: #34495e;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: #7f8c8d;
+            font-weight: 300;
+        }
+
+        .accent {
+            color: #3498db;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            display: inline-block;
+            font-size: 1.3rem;
+            margin: 2rem 0;
+        }
+
+        ul li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            text-align: left;
+            margin: 1.5rem auto;
+            max-width: 800px;
+            overflow-x: auto;
+            font-size: 1.1rem;
+        }
+
+        .formula {
+            color: #3498db;
+            background: #ecf0f1;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 1.1rem;
+        }
+
+        table {
+            margin: 2rem auto;
+            border-collapse: collapse;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem 2rem;
+            text-align: left;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e8f4f8;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            color: #95a5a6;
+            font-size: 1rem;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #3498db;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin: 1rem auto;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.5rem; }
+            p { font-size: 1.1rem; }
+            .two-columns { grid-template-columns: 1fr; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="presentation-container" id="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h1 class="highlight">MSBA Statistics & Excel Workshop</h1>
+                <p class="subtitle">Day 1, Session 1</p>
+                <h2>Foundations of Descriptive Statistics & Excel Essentials</h2>
+                <p style="margin-top: 3rem; color: #7f8c8d;">Navigate with arrow keys or buttons</p>
+            </div>
+            <div class="slide-number">1 / 37</div>
+        </div>
+
+        <!-- Slide 2: Welcome -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Welcome & Introductions</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3 class="accent">👋 Who's Here?</h3>
+                        <p>Quick introductions</p>
+                        <p>Your background</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="accent">📊 Experience Check</h3>
+                        <p>Excel proficiency</p>
+                        <p>Statistics background</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="accent">🎯 Your Goals</h3>
+                        <p>What to achieve</p>
+                        <p>Specific challenges</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">2 / 37</div>
+        </div>
+
+        <!-- Slide 3: Learning Objectives -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Learning Objectives</h2>
+                <ul style="font-size: 1.5rem;">
+                    <li>Master fundamental <span class="accent">descriptive statistics</span> concepts</li>
+                    <li>Develop proficiency in <span class="accent">Excel for business analytics</span></li>
+                    <li>Apply statistical methods to <span class="accent">real business problems</span></li>
+                    <li>Build confidence in <span class="accent">data analysis techniques</span></li>
+                </ul>
+            </div>
+            <div class="slide-number">3 / 37</div>
+        </div>
+
+        <!-- Slide 4: Workshop Roadmap -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>3-Day Workshop Roadmap</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3 class="accent">Day 1</h3>
+                        <p><strong>Session 1:</strong> Excel Fundamentals & Central Tendency</p>
+                        <p><strong>Session 2:</strong> Variability & Visualization</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="accent">Day 2</h3>
+                        <p><strong>Session 3:</strong> Probability & Normal Distribution</p>
+                        <p><strong>Session 4:</strong> Sampling & Confidence Intervals</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="accent">Day 3</h3>
+                        <p><strong>Session 5:</strong> Hypothesis Testing</p>
+                        <p><strong>Session 6:</strong> Regression & Business Applications</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">4 / 37</div>
+        </div>
+
+        <!-- Slide 5: Technical Setup -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Technical Setup Checklist</h2>
+                <table>
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Excel Version</td>
+                        <td>2016 or later (Office 365 preferred)</td>
+                    </tr>
+                    <tr>
+                        <td>Operating System</td>
+                        <td>Windows or macOS</td>
+                    </tr>
+                    <tr>
+                        <td>Workshop Files</td>
+                        <td>session1-workbooks folder</td>
+                    </tr>
+                    <tr>
+                        <td>Screen Setup</td>
+                        <td>Slides + Excel side by side</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="slide-number">5 / 37</div>
+        </div>
+
+        <!-- Slide 6: Skills Assessment -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Quick Skills Assessment</h2>
+                <p style="font-size: 1.6rem; margin-bottom: 2rem;">Rate your comfort level (1-5):</p>
+                <div class="grid">
+                    <div class="card">
+                        <p>📊 Basic Excel formulas</p>
+                    </div>
+                    <div class="card">
+                        <p>📈 Creating charts</p>
+                    </div>
+                    <div class="card">
+                        <p>🔢 Statistical concepts</p>
+                    </div>
+                    <div class="card">
+                        <p>💼 Business analysis</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">6 / 37</div>
+        </div>
+
+        <!-- Slide 7: Resources -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Resources Available</h2>
+                <p style="font-size: 1.5rem; margin-bottom: 2rem;">All materials in <span class="formula">session1-workbooks/</span> folder:</p>
+                <table style="font-size: 1.1rem;">
+                    <tr>
+                        <th>Workbook</th>
+                        <th>Exercise</th>
+                        <th>Topic</th>
+                    </tr>
+                    <tr>
+                        <td><span class="formula">workbook1_sales_data.csv</span></td>
+                        <td>Exercise 1</td>
+                        <td>Excel Fundamentals</td>
+                    </tr>
+                    <tr>
+                        <td><span class="formula">workbook2_employee_salaries.csv</span></td>
+                        <td>Exercise 2</td>
+                        <td>Central Tendency</td>
+                    </tr>
+                    <tr>
+                        <td><span class="formula">workbook3_product_sales_variability.csv</span></td>
+                        <td>Session 2</td>
+                        <td>Variability Measures</td>
+                    </tr>
+                    <tr>
+                        <td><span class="formula">workbook4_customer_purchases.csv</span></td>
+                        <td>Session 2</td>
+                        <td>Data Visualization</td>
+                    </tr>
+                    <tr>
+                        <td><span class="formula">workbook5_messy_customer_data.csv</span></td>
+                        <td>Session 2</td>
+                        <td>Data Cleaning</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 1.5rem;">📖 Tutorial guide: <span class="formula">session1-tutorial.md</span></p>
+            </div>
+            <div class="slide-number">7 / 37</div>
+        </div>
+
+        <!-- Slide 8: Ground Rules -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Workshop Ground Rules</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>🙋 Questions</h3>
+                        <p>Ask anytime!</p>
+                        <p>No question too basic</p>
+                    </div>
+                    <div class="card">
+                        <h3>⌚ Pace</h3>
+                        <p>We'll adjust as needed</p>
+                        <p>Regular check-ins</p>
+                    </div>
+                    <div class="card">
+                        <h3>🤝 Collaboration</h3>
+                        <p>Help each other</p>
+                        <p>Share insights</p>
+                    </div>
+                    <div class="card">
+                        <h3>💻 Practice</h3>
+                        <p>Hands-on focus</p>
+                        <p>Learn by doing</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">8 / 37</div>
+        </div>
+
+        <!-- Slide 9: Why Excel -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Why Excel for Analytics?</h2>
+                <div class="two-columns">
+                    <div>
+                        <ul>
+                            <li>🏢 Industry standard tool</li>
+                            <li>🔧 Accessible to all skill levels</li>
+                            <li>🔄 Integrates with other tools</li>
+                            <li>📊 Powerful visualization</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>⚡ Quick prototyping</li>
+                            <li>📈 Statistical functions built-in</li>
+                            <li>🎯 Business-focused features</li>
+                            <li>🌐 Universal availability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">9 / 37</div>
+        </div>
+
+        <!-- Slide 10: Navigation -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Navigation Efficiency</h2>
+                <table>
+                    <tr>
+                        <th>Action</th>
+                        <th>Windows</th>
+                        <th>Mac</th>
+                    </tr>
+                    <tr>
+                        <td>Jump to data edge</td>
+                        <td><span class="formula">Ctrl + Arrow</span></td>
+                        <td><span class="formula">Cmd + Arrow</span></td>
+                    </tr>
+                    <tr>
+                        <td>Select data range</td>
+                        <td><span class="formula">Ctrl + Shift + Arrow</span></td>
+                        <td><span class="formula">Cmd + Shift + Arrow</span></td>
+                    </tr>
+                    <tr>
+                        <td>Edit cell</td>
+                        <td><span class="formula">F2</span></td>
+                        <td><span class="formula">F2 (or Fn+F2)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Absolute reference</td>
+                        <td><span class="formula">F4</span></td>
+                        <td><span class="formula">F4 (or Fn+F4)</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="slide-number">10 / 37</div>
+        </div>
+
+        <!-- Slide 11: Cell References -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Cell Reference Mastery</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Relative: <span class="formula">A1</span></h3>
+                        <p>Changes when copied</p>
+                        <p>Most common type</p>
+                    </div>
+                    <div class="card">
+                        <h3>Absolute: <span class="formula">$A$1</span></h3>
+                        <p>Never changes</p>
+                        <p>For fixed values</p>
+                    </div>
+                    <div class="card">
+                        <h3>Mixed: <span class="formula">$A1</span> or <span class="formula">A$1</span></h3>
+                        <p>Partially fixed</p>
+                        <p>Advanced use cases</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">11 / 37</div>
+        </div>
+
+        <!-- Slide 12: Reference Examples -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Reference Behavior When Copying</h2>
+                <div class="code-block">
+Original in B2:  =A1*10      → Copy to C3:  =B2*10
+Original in B2:  =$A$1*10    → Copy to C3:  =$A$1*10
+Original in B2:  =$A1*10     → Copy to C3:  =$A2*10
+Original in B2:  =A$1*10     → Copy to C3:  =B$1*10
+                </div>
+                <p style="margin-top: 2rem;">💡 Press F4 repeatedly to cycle through reference types</p>
+            </div>
+            <div class="slide-number">12 / 37</div>
+        </div>
+
+        <!-- Slide 13: Essential Functions -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Essential Functions Overview</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>📊 Statistical</h3>
+                        <p>AVERAGE, MEDIAN</p>
+                        <p>STDEV, VAR</p>
+                    </div>
+                    <div class="card">
+                        <h3>🔢 Mathematical</h3>
+                        <p>SUM, ROUND</p>
+                        <p>MIN, MAX</p>
+                    </div>
+                    <div class="card">
+                        <h3>📝 Text</h3>
+                        <p>TRIM, PROPER</p>
+                        <p>CONCATENATE</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎯 Logical</h3>
+                        <p>IF, AND, OR</p>
+                        <p>COUNTIF, SUMIF</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">13 / 37</div>
+        </div>
+
+        <!-- Slide 14: Core Functions -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Core Statistical Functions</h2>
+                <div class="code-block">
+=SUM(A1:A10)          # Add all values in range
+=AVERAGE(B1:B20)      # Calculate arithmetic mean
+=COUNT(C1:C30)        # Count cells with numbers
+=COUNTA(D1:D40)       # Count non-empty cells
+=MEDIAN(E1:E50)       # Find middle value
+=MODE.SNGL(F1:F60)    # Most frequent value
+                </div>
+            </div>
+            <div class="slide-number">14 / 37</div>
+        </div>
+
+        <!-- Slide 15: Exercise 1 Intro -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Exercise 1: Sales Summary Template</h2>
+                <div class="two-columns">
+                    <div>
+                        <h3>📋 Your Task</h3>
+                        <ul>
+                            <li>Build dynamic sales report</li>
+                            <li>Calculate totals & averages</li>
+                            <li>Apply tax calculations</li>
+                            <li>Use conditional formatting</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>📊 The Data</h3>
+                        <ul>
+                            <li>12 months of sales</li>
+                            <li>5 product lines</li>
+                            <li>Real business scenario</li>
+                            <li>File: <span class="formula">session1-workbooks/workbook1_sales_data.csv</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; background: #e8f4f8; padding: 1rem; border-radius: 8px;">
+                    📁 Open the file from your workshop folder
+                </p>
+            </div>
+            <div class="slide-number">15 / 37</div>
+        </div>
+
+        <!-- Slides 16-20: Exercise walkthrough placeholder -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Exercise 1: Step by Step</h2>
+                <p style="font-size: 1.6rem;">Let's build this together!</p>
+                <p>Open <span class="formula">session1-workbooks/workbook1_sales_data.csv</span></p>
+                <p style="margin-top: 2rem;">📖 Follow along with <span class="formula">session1-tutorial.md</span></p>
+                <div style="margin-top: 2rem; background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <p><strong>Key Steps:</strong></p>
+                    <p>1. Import CSV → 2. Add formulas → 3. Apply formatting → 4. Create summary</p>
+                </div>
+            </div>
+            <div class="slide-number">16 / 37</div>
+        </div>
+
+        <!-- Slide 21: Best Practices -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Excel Best Practices</h2>
+                <ul>
+                    <li>📁 Organize data in tables</li>
+                    <li>🏷️ Use descriptive names for ranges</li>
+                    <li>📝 Document complex formulas</li>
+                    <li>✅ Validate data inputs</li>
+                    <li>🔒 Protect formulas from accidental changes</li>
+                    <li>💾 Save versions regularly</li>
+                </ul>
+            </div>
+            <div class="slide-number">21 / 37</div>
+        </div>
+
+        <!-- Slide 22: Common Pitfalls -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Common Excel Pitfalls</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>❌ #REF! Error</h3>
+                        <p>Deleted cell reference</p>
+                        <p>Check formulas carefully</p>
+                    </div>
+                    <div class="card">
+                        <h3>❌ Circular Reference</h3>
+                        <p>Formula refers to itself</p>
+                        <p>Break the loop</p>
+                    </div>
+                    <div class="card">
+                        <h3>❌ Wrong Reference Type</h3>
+                        <p>Relative vs Absolute</p>
+                        <p>Test before copying</p>
+                    </div>
+                    <div class="card">
+                        <h3>❌ Data Type Mismatch</h3>
+                        <p>Text vs Numbers</p>
+                        <p>Check formatting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">22 / 37</div>
+        </div>
+
+        <!-- Slide 23: Exercise Debrief -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Exercise 1 Debrief</h2>
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li>✅ Efficient navigation saves time</li>
+                    <li>✅ Absolute references for fixed values</li>
+                    <li>✅ Tables make data management easier</li>
+                    <li>✅ Conditional formatting reveals patterns</li>
+                </ul>
+                <p style="margin-top: 2rem; font-size: 1.6rem;">Questions about the exercise?</p>
+            </div>
+            <div class="slide-number">23 / 37</div>
+        </div>
+
+        <!-- Slide 24: What Are Descriptive Stats -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>What Are Descriptive Statistics?</h2>
+                <div class="two-columns">
+                    <div>
+                        <h3>📊 Purpose</h3>
+                        <ul>
+                            <li>Summarize data</li>
+                            <li>Find patterns</li>
+                            <li>Communicate insights</li>
+                            <li>Support decisions</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>💼 Business Uses</h3>
+                        <ul>
+                            <li>Performance metrics</li>
+                            <li>Customer analysis</li>
+                            <li>Quality control</li>
+                            <li>Risk assessment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">24 / 37</div>
+        </div>
+
+        <!-- Slide 25: Types of Data -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Types of Data</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>📛 Nominal</h3>
+                        <p>Categories without order</p>
+                        <p><em>Product types, colors</em></p>
+                    </div>
+                    <div class="card">
+                        <h3>📊 Ordinal</h3>
+                        <p>Ordered categories</p>
+                        <p><em>Ratings, education level</em></p>
+                    </div>
+                    <div class="card">
+                        <h3>🌡️ Interval</h3>
+                        <p>Equal intervals, no true zero</p>
+                        <p><em>Temperature, dates</em></p>
+                    </div>
+                    <div class="card">
+                        <h3>💰 Ratio</h3>
+                        <p>True zero exists</p>
+                        <p><em>Revenue, age, weight</em></p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">25 / 37</div>
+        </div>
+
+        <!-- Slide 26: Central Tendency -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Measures of Central Tendency</h2>
+                <p style="font-size: 1.8rem; margin-bottom: 2rem;">Finding the "typical" value</p>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Mean</h3>
+                        <p>Arithmetic average</p>
+                    </div>
+                    <div class="card">
+                        <h3>Median</h3>
+                        <p>Middle value</p>
+                    </div>
+                    <div class="card">
+                        <h3>Mode</h3>
+                        <p>Most frequent</p>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem;">Each tells a different story about your data!</p>
+            </div>
+            <div class="slide-number">26 / 37</div>
+        </div>
+
+        <!-- Slide 27: Mean -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Mean (Average)</h2>
+                <div class="code-block">
+Excel: =AVERAGE(range)
+Formula: Sum of all values ÷ Number of values
+                </div>
+                <div class="two-columns" style="margin-top: 2rem;">
+                    <div>
+                        <h3>✅ Strengths</h3>
+                        <ul>
+                            <li>Uses all data points</li>
+                            <li>Mathematically robust</li>
+                            <li>Good for normal data</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>❌ Weaknesses</h3>
+                        <ul>
+                            <li>Sensitive to outliers</li>
+                            <li>Can be misleading</li>
+                            <li>Not for skewed data</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">27 / 37</div>
+        </div>
+
+        <!-- Slide 28: Median -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Median</h2>
+                <div class="code-block">
+Excel: =MEDIAN(range)
+Definition: Middle value when data is sorted
+                </div>
+                <div class="two-columns" style="margin-top: 2rem;">
+                    <div>
+                        <h3>✅ Strengths</h3>
+                        <ul>
+                            <li>Robust to outliers</li>
+                            <li>Better for skewed data</li>
+                            <li>Represents "typical"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>❌ Weaknesses</h3>
+                        <ul>
+                            <li>Ignores data magnitude</li>
+                            <li>Less mathematical</li>
+                            <li>Can miss patterns</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">28 / 37</div>
+        </div>
+
+        <!-- Slide 29: Mode -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Mode</h2>
+                <div class="code-block">
+Excel: =MODE.SNGL(range)
+Definition: Most frequently occurring value
+                </div>
+                <div class="two-columns" style="margin-top: 2rem;">
+                    <div>
+                        <h3>✅ Strengths</h3>
+                        <ul>
+                            <li>Works with categories</li>
+                            <li>Finds popular choice</li>
+                            <li>Easy to understand</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>⚠️ Considerations</h3>
+                        <ul>
+                            <li>May not exist</li>
+                            <li>Multiple modes possible</li>
+                            <li>Less informative</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">29 / 37</div>
+        </div>
+
+        <!-- Slide 30: Choosing the Right Measure -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Choosing the Right Measure</h2>
+                <table>
+                    <tr>
+                        <th>Situation</th>
+                        <th>Best Measure</th>
+                        <th>Why?</th>
+                    </tr>
+                    <tr>
+                        <td>Normal distribution</td>
+                        <td>Mean</td>
+                        <td>Uses all information</td>
+                    </tr>
+                    <tr>
+                        <td>Skewed data / Outliers</td>
+                        <td>Median</td>
+                        <td>Not affected by extremes</td>
+                    </tr>
+                    <tr>
+                        <td>Categorical data</td>
+                        <td>Mode</td>
+                        <td>Only option for categories</td>
+                    </tr>
+                    <tr>
+                        <td>Income data</td>
+                        <td>Median</td>
+                        <td>Few high earners skew mean</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="slide-number">30 / 37</div>
+        </div>
+
+        <!-- Slide 31: Exercise 2 Intro -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Exercise 2: Employee Salary Analysis</h2>
+                <div class="two-columns">
+                    <div>
+                        <h3>🎯 Objectives</h3>
+                        <ul>
+                            <li>Calculate department statistics</li>
+                            <li>Compare mean vs median</li>
+                            <li>Identify salary patterns</li>
+                            <li>Find outliers</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>📊 The Data</h3>
+                        <ul>
+                            <li>45 employees</li>
+                            <li>6 departments</li>
+                            <li>Real salary ranges</li>
+                            <li>File: <span class="formula">session1-workbooks/workbook2_employee_salaries.csv</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; background: #e8f4f8; padding: 1rem; border-radius: 8px;">
+                    💡 This exercise demonstrates why median is often better than mean for salary data
+                </p>
+            </div>
+            <div class="slide-number">31 / 37</div>
+        </div>
+
+        <!-- Slides 32-34: Exercise 2 walkthrough -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Exercise 2: Let's Analyze!</h2>
+                <p style="font-size: 1.6rem;">Open <span class="formula">session1-workbooks/workbook2_employee_salaries.csv</span></p>
+                <p style="margin-top: 2rem;">We'll discover:</p>
+                <ul>
+                    <li>Which department pays the most?</li>
+                    <li>Where are the salary gaps?</li>
+                    <li>How do outliers affect averages?</li>
+                </ul>
+                <div style="margin-top: 2rem; background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <p><strong>Pro Tip:</strong> Use AVERAGEIF and COUNTIF for department summaries</p>
+                </div>
+            </div>
+            <div class="slide-number">32 / 37</div>
+        </div>
+
+        <!-- Slide 35: Exercise 2 Insights -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Exercise 2: Key Insights</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>💰 Highest Average</h3>
+                        <p>Finance Department</p>
+                        <p>$75,857 mean salary</p>
+                    </div>
+                    <div class="card">
+                        <h3>📊 Most Variable</h3>
+                        <p>IT Department</p>
+                        <p>Director outlier effect</p>
+                    </div>
+                    <div class="card">
+                        <h3>👥 Largest Team</h3>
+                        <p>Operations</p>
+                        <p>8 employees</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎯 Key Learning</h3>
+                        <p>Median vs Mean</p>
+                        <p>Outlier impact</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">35 / 37</div>
+        </div>
+
+        <!-- Slide 36: Session 1 Recap -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Session 1 Recap</h2>
+                <h3>What We've Learned</h3>
+                <ul>
+                    <li>✅ Excel navigation and shortcuts</li>
+                    <li>✅ Cell references (relative vs absolute)</li>
+                    <li>✅ Essential statistical functions</li>
+                    <li>✅ Types of data and their properties</li>
+                    <li>✅ Mean, median, and mode</li>
+                    <li>✅ When to use each measure</li>
+                </ul>
+                <p style="margin-top: 2rem; font-size: 1.6rem;">Ready for Session 2? 🚀</p>
+            </div>
+            <div class="slide-number">36 / 37</div>
+        </div>
+
+        <!-- Slide 37: Break -->
+        <div class="slide">
+            <div class="slide-content fade-in">
+                <h2>Break Time! ☕</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>🚶 Stretch</h3>
+                        <p>Get up and move</p>
+                    </div>
+                    <div class="card">
+                        <h3>💧 Hydrate</h3>
+                        <p>Grab some water</p>
+                    </div>
+                    <div class="card">
+                        <h3>💭 Reflect</h3>
+                        <p>Process what you learned</p>
+                    </div>
+                    <div class="card">
+                        <h3>⏰ Return</h3>
+                        <p>Back in 15 minutes</p>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem;">Next up in Session 2: Measures of Variability & Data Visualization</p>
+                <p style="font-size: 1.2rem; color: #7f8c8d;">Using workbooks 3, 4, and 5</p>
+            </div>
+            <div class="slide-number">37 / 37</div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progressBar');
+
+        function updateSlide() {
+            const container = document.getElementById('presentation');
+            container.scrollTo({
+                top: slides[currentSlide].offsetTop,
+                behavior: 'smooth'
+            });
+            
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            
+            // Update slide numbers
+            slides.forEach((slide, index) => {
+                const slideNumber = slide.querySelector('.slide-number');
+                if (slideNumber) {
+                    slideNumber.textContent = `${index + 1} / ${totalSlides}`;
+                }
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+            updateSlide();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'Home') { currentSlide = 0; updateSlide(); }
+            if (e.key === 'End') { currentSlide = totalSlides - 1; updateSlide(); }
+        });
+
+        // Mouse wheel navigation
+        let scrollTimeout;
+        document.getElementById('presentation').addEventListener('wheel', (e) => {
+            e.preventDefault();
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (e.deltaY > 0) changeSlide(1);
+                else changeSlide(-1);
+            }, 50);
+        });
+
+        // Initialize
+        updateSlide();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            updateSlide();
+        });
+    </script>
+</body>
+</html>
