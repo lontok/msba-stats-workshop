@@ -1,0 +1,46 @@
+Employee_ID,Department,Position,Salary
+E001,Sales,Sales Rep,45000
+E002,Sales,Sales Rep,48000
+E003,Sales,Senior Sales Rep,58000
+E004,Sales,Sales Manager,75000
+E005,Sales,Sales Rep,46000
+E006,Sales,Sales Rep,44000
+E007,Sales,Senior Sales Rep,62000
+E008,Sales,Sales Director,95000
+E009,Marketing,Marketing Coordinator,42000
+E010,Marketing,Marketing Specialist,52000
+E011,Marketing,Senior Marketing Specialist,65000
+E012,Marketing,Marketing Manager,78000
+E013,Marketing,Marketing Coordinator,43000
+E014,Marketing,Marketing Specialist,54000
+E015,Marketing,Marketing Director,92000
+E016,IT,IT Support,48000
+E017,IT,Developer,68000
+E018,IT,Senior Developer,82000
+E019,IT,IT Manager,88000
+E020,IT,Developer,70000
+E021,IT,Senior Developer,85000
+E022,IT,IT Director,105000
+E023,IT,IT Support,50000
+E024,HR,HR Assistant,40000
+E025,HR,HR Specialist,55000
+E026,HR,HR Manager,72000
+E027,HR,HR Assistant,41000
+E028,HR,HR Specialist,57000
+E029,HR,HR Director,90000
+E030,Finance,Accountant,58000
+E031,Finance,Senior Accountant,72000
+E032,Finance,Finance Manager,85000
+E033,Finance,Accountant,60000
+E034,Finance,Senior Accountant,74000
+E035,Finance,Finance Director,110000
+E036,Finance,Financial Analyst,65000
+E037,Finance,Senior Financial Analyst,78000
+E038,Operations,Operations Coordinator,46000
+E039,Operations,Operations Specialist,56000
+E040,Operations,Operations Manager,76000
+E041,Operations,Operations Coordinator,47000
+E042,Operations,Operations Specialist,58000
+E043,Operations,Senior Operations Specialist,68000
+E044,Operations,Operations Director,94000
+E045,Operations,Operations Analyst,52000
