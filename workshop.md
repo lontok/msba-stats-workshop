@@ -17,6 +17,11 @@
 - Focus on practical applications
 - All materials will be provided
 
+**Technical Requirements:**
+- Excel 2016 or later (Office 365 preferred)
+- Windows or Mac OS
+- Basic mouse/trackpad skills
+
 **Quick Excel Skills Assessment:**
 - Basic formula knowledge check
 - Navigation familiarity
@@ -26,13 +31,24 @@
 
 #### Excel Fundamentals for Analytics (45 minutes)
 
+**Platform Note:** Mac users should use Cmd (⌘) instead of Ctrl, and Option instead of Alt. Function keys may require holding the Fn key.
+
 **1. Navigating Excel Efficiently**
-- Essential keyboard shortcuts:
-  - Ctrl+Arrow keys: Navigate to data boundaries
-  - Ctrl+Shift+Arrow: Select data ranges
-  - F2: Edit cell contents
-  - F4: Toggle absolute references
-  - Alt+Enter: New line within cell
+
+Essential keyboard shortcuts:
+
+| Action | Windows | Mac |
+|--------|---------|-----|
+| Navigate to data boundaries | Ctrl+Arrow | Cmd+Arrow |
+| Select data ranges | Ctrl+Shift+Arrow | Cmd+Shift+Arrow |
+| Edit cell contents | F2 | F2 (or Fn+F2) |
+| Toggle absolute references | F4 | F4 (or Fn+F4) |
+| New line within cell | Alt+Enter | Option+Enter |
+| Copy | Ctrl+C | Cmd+C |
+| Paste | Ctrl+V | Cmd+V |
+| Undo | Ctrl+Z | Cmd+Z |
+| Find | Ctrl+F | Cmd+F |
+| Save | Ctrl+S | Cmd+S |
 
 **2. Cell References**
 - Relative references (A1): Change when copied
@@ -136,16 +152,16 @@
 - Choosing appropriate bin sizes
 - Excel steps:
   1. Select data range
-  2. Insert > Charts > Histogram
+  2. Insert → Charts → Histogram (Insert tab → Charts group)
   3. Adjust bin width and boundaries
-  4. Format for clarity
+  4. Format for clarity (right-click chart for options)
 
 **2. Building Box Plots**
 - Five-number summary visualization
 - Identifying outliers
 - Excel steps:
   1. Calculate quartiles: `=QUARTILE.EXC(range, n)`
-  2. Insert > Charts > Box and Whisker
+  2. Insert → Charts → Box and Whisker (Statistical Charts)
   3. Interpret results
 
 **3. Distribution Patterns**
@@ -180,6 +196,7 @@
 - Identify blanks: `=ISBLANK(cell)`
 - Count blanks: `=COUNTBLANK(range)`
 - Fill blanks: `=IF(ISBLANK(A1),AVERAGE(range),A1)`
+- Quick select blanks: Ctrl/Cmd+G → Special → Blanks
 
 **Excel Exercise: Cleaning a Messy Customer Dataset**
 - Dataset: Customer information with errors
